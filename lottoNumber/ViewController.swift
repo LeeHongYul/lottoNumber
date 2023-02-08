@@ -43,7 +43,7 @@ class ViewController: UIViewController {
             switch x {
             case (1...10) :
                 y.textColor = UIColor.black
-                y.backgroundColor = UIColor.yellow
+                y.backgroundColor = UIColor.systemYellow
                 
             case (11...20) :
                 y.textColor = UIColor.white
