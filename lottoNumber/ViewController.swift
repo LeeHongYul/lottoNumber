@@ -16,15 +16,28 @@ class ViewController: UIViewController {
     @IBOutlet weak var fiveNumberLabel: UILabel!
     @IBOutlet weak var sixNumberLabel: UILabel!
     
+    func removeDuplication(in array: [Int]) -> [Int]{
+        let set = Set(array)
+        let duplicationRemovedArray = Array(set)
+        return duplicationRemovedArray
+    }
+    
     @IBAction func rollBtn(_ sender: Any) {
         
         var rndArr = [Int]()
-
+        
         for _ in 0...5 {
             rndArr.append(Int.random(in: 1...45))
         }
         
-        
+        for i in 0...5{
+            for j in 0...5{
+                if(rndArr[j] == rndArr[i]){
+                    rndArr = removeDuplication(in: rndArr)
+                    rndArr.append(Int.random(in: 1...45))
+                }
+            }
+        }
         
         // 각 label에 램덤값 출력
         oneNumberLabel.text = String(rndArr[0])
@@ -65,7 +78,12 @@ class ViewController: UIViewController {
             
         }
         
-        var labelArr = [oneNumberLabel, twoNumberLabel, threeNumberLabel, fourNumberLabel, fiveNumberLabel, sixNumberLabel]
+        var labelArr = [oneNumberLabel,
+                        twoNumberLabel,
+                        threeNumberLabel,
+                        fourNumberLabel,
+                        fiveNumberLabel,
+                        sixNumberLabel]
         
         for i in 0...5 {
             Labelingnumber(value: rndArr[i], label: labelArr[i]!)
