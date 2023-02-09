@@ -8,56 +8,56 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    @IBOutlet weak var numberLabel: UILabel!
     
-    @IBOutlet weak var secondNumberLabel: UILabel!
-
-    @IBOutlet weak var thirdNumberLabel: UILabel!
-    
-    @IBOutlet weak var fourthNumberLabel: UILabel!
-    
+    @IBOutlet weak var oneNumberLabel: UILabel!
+    @IBOutlet weak var twoNumberLabel: UILabel!
+    @IBOutlet weak var threeNumberLabel: UILabel!
+    @IBOutlet weak var fourNumberLabel: UILabel!
+    @IBOutlet weak var fiveNumberLabel: UILabel!
     @IBOutlet weak var sixNumberLabel: UILabel!
-    
-    @IBOutlet weak var fifthNumberLabel: UILabel!
     
     @IBAction func rollBtn(_ sender: Any) {
         
-        //투플 사용, 6개 램덤 숫자 생성
-        let rnd = (Int.random(in: 1...45),Int.random(in: 1...45),Int.random(in: 1...45),Int.random(in: 1...45),Int.random(in: 1...45),Int.random(in: 1...45))
+        var rndArr = [Int]()
+
+        for _ in 0...5 {
+            rndArr.append(Int.random(in: 1...45))
+        }
+        
+        
         
         // 각 label에 램덤값 출력
-        numberLabel.text = String(rnd.0)
-        secondNumberLabel.text = String(rnd.1)
-        thirdNumberLabel.text = String(rnd.2)
-        fourthNumberLabel.text = String(rnd.3)
-        fifthNumberLabel.text = String(rnd.4)
-        sixNumberLabel.text = String(rnd.5)
+        oneNumberLabel.text = String(rndArr[0])
+        twoNumberLabel.text = String(rndArr[1])
+        threeNumberLabel.text = String(rndArr[2])
+        fourNumberLabel.text = String(rndArr[3])
+        fiveNumberLabel.text = String(rndArr[4])
+        sixNumberLabel.text = String(rndArr[5])
         
-        /*공 색 분류,
-        노란색 공일때는 숫자 텍스트 검정색
-        파란색 공일때는 숫자 텍스트 흰색
-        검정색 공일때는 숫자 텍스트 흰색
-         */
-        func numberLabeling(x:Int, y: UILabel){
-            switch x {
+        /* 시도했지만 실패,
+         for i in rndArr {
+         labelArr.text! = String(rndArr[i])
+         }*/
+        
+        func Labelingnumber(value:Int, label: UILabel){
+            switch value {
             case (1...10) :
-                y.textColor = UIColor.black
-                y.backgroundColor = UIColor.systemYellow
+                label.textColor = UIColor.black
+                label.backgroundColor = UIColor.systemYellow
                 
             case (11...20) :
-                y.textColor = UIColor.white
-                y.backgroundColor = UIColor.systemBlue
+                label.textColor = UIColor.white
+                label.backgroundColor = UIColor.systemBlue
                 
             case (21...30) :
-                y.backgroundColor = UIColor.red
+                label.backgroundColor = UIColor.red
                 
             case (31...40) :
-                y.textColor = UIColor.white
-                y.backgroundColor = UIColor.black
+                label.textColor = UIColor.white
+                label.backgroundColor = UIColor.black
                 
             case (41...45) :
-                y.backgroundColor = UIColor.green
+                label.backgroundColor = UIColor.green
                 
             default:
                 print("error")
@@ -65,13 +65,15 @@ class ViewController: UIViewController {
             
         }
         
-        numberLabeling(x: rnd.0, y: numberLabel)
-        numberLabeling(x: rnd.1, y: secondNumberLabel)
-        numberLabeling(x: rnd.2, y: thirdNumberLabel)
-        numberLabeling(x: rnd.3, y: fourthNumberLabel)
-        numberLabeling(x: rnd.4, y: fifthNumberLabel)
-        numberLabeling(x: rnd.5, y: sixNumberLabel)
+        var labelArr = [oneNumberLabel, twoNumberLabel, threeNumberLabel, fourNumberLabel, fiveNumberLabel, sixNumberLabel]
+        
+        for i in 0...5 {
+            Labelingnumber(value: rndArr[i], label: labelArr[i]!)
         }
+        
+        
+        
+    }
     
     override func viewDidLoad() {
         
@@ -79,16 +81,14 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         //label의 cornerRadius사용해서 둥긍 공 모양으로 생성
-        numberLabel.layer.cornerRadius = 15
-        secondNumberLabel.layer.cornerRadius = 15
-        thirdNumberLabel.layer.cornerRadius = 15
-        fourthNumberLabel.layer.cornerRadius = 15
-        fifthNumberLabel.layer.cornerRadius = 15
+        oneNumberLabel.layer.cornerRadius = 15
+        twoNumberLabel.layer.cornerRadius = 15
+        threeNumberLabel.layer.cornerRadius = 15
+        fourNumberLabel.layer.cornerRadius = 15
+        fiveNumberLabel.layer.cornerRadius = 15
         sixNumberLabel.layer.cornerRadius = 15
         
     }
-   
     
-
 }
 
